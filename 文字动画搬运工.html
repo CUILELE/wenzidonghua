@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 500px;
+				height: 200px;
+				border: 1px solid black;
+				line-height: 34px;	
+				position: relative;
+			}
+			i{
+				display: inline-block;
+				margin:20px 0 20px 210px;
+			}
+			#down{
+				background: black;
+			}
+			span{
+				position: absolute;
+				transition: 2s;
+				z-index: 2;
+			}
+		</style>
+	</head>
+	<script type="text/javascript">
+		window.onload = function (){
+			var btn = document.getElementsByTagName('input');
+			var top = document.getElementById('top');
+			var str = "正如他所说的那样，我们中国被称为文明古国，经千年颠沛而魂魄不散，历万种灾厄而总能重生，就是因为我们重视教育、我们尊师重道。早在文化的缘起就将孔子这位伟大的教育家立为我们这个民族的文化精神图腾。而对于教育的执念即便在最困苦的岁月、最艰难的日子里，总有人不抛弃，总有人把教育重新拾起、擦拭，奉还于我们的神坛。"
+			var span = document.getElementsByTagName('span');
+			var str1 = '';
+			var timer = 1;
+			var num = 0;
+			for(var i=0;i<str.length;i++){
+				str1 +='<span style="left:'+i%30*16+'px;top:'+Math.floor(i/30)*34+'px;">'+str.charAt(i)+'</span>'
+			}
+			top.innerHTML = str1
+			btn[1].onclick = function (){
+				clearInterval(timer)
+				timer = setInterval(function (){
+					Fnn(260,"white")
+					num++;
+					if(num>=span.length){
+						clearInterval(timer)
+					}
+				},30)
+			}
+			btn[0].onclick = function (){
+				clearInterval(timer)
+				num = span.length
+				timer = setInterval(function (){
+					num--;
+					if(num<=0){
+						clearInterval(timer)
+					}
+				Fnn(0,"black")
+				},30)
+			}
+			
+			function Fnn(n,color){
+				span[num].style.top = Math.floor(num/30)*34+n+'px';
+				span[num].style.color = color;
+			}
+		}
+	</script>
+	<body>
+		<div id="top">
+			
+		</div>
+		<i>
+			<input type="button" name="" id="" value="上去吧" />
+			<input type="button" name="" id="" value="下来！！！" />
+		</i>
+		<div id="down">
+			
+		</div>
+	</body>
+</html>
